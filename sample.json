@@ -1,0 +1,47 @@
+{
+  "blocks": [
+    {
+      "type": "header",
+      "text": {
+        "type": "plain_text",
+        "text": "새로운 안드로이드 앱이 배포되었습니다! 🚀",
+        "emoji": true
+      }
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "plain_text",
+        "text": "Checkout for new version of android app!",
+        "emoji": true
+      }
+    },
+    {
+      "type": "section",
+      "fields": [
+        {
+          "type": "mrkdwn",
+          "text": "*버전:* `0.1.10`"
+        },
+        {
+          "type": "mrkdwn",
+          "text": "*패키지명:* `com.nighttwo1.slackmsg`"
+        },
+        {
+          "type": "mrkdwn",
+          "text": "*Release Date:* `2024-06-05`"
+        }
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "테스트 후 피드백은 언제든지 환영합니다. 앱 사용 중 문제가 발생하거나 개선 사항이 있다면 메시지를 남겨주시면 감사하겠습니다."
+      }
+    }
+  ]
+}
