@@ -70,6 +70,39 @@ module Fastlane
           }
         end
 
+        default_content = {
+          type: "section",
+          fields: []
+        }
+
+        default_payloads = ->(payload_name) {options[:default_payloads].map(&:to_sym).include?(payload_name.to_sym)}
+        # git branch
+        if Actions.git_branch && default_payloads[:git_branch]
+          default_content[:fields] << {
+            type: "mrkdwn",
+            text: "*Git Branch:* `#{Actions.git_branch}`"
+          }
+        end
+
+        # git_author
+        if Actions.git_author_email && default_payloads[:git_author]
+          if FastlaneCore::Env.truthy?('FASTLANE_SLACK_HIDE_AUTHOR_ON_SUCCESS') && options[:success]
+          # We only show the git author if the build failed
+          else
+            default_content[:fields] << {
+              type: "mrkdwn",
+              text: "*Git Author:* `#{Actions.git_author_email}`"
+            }
+          end
+        end
+        
+        #release_date
+        if default_payloads[:release_date]
+          default_content[:fields] << {
+              type: "mrkdwn",
+              text: "*Release Date:* `#{Time.new.to_s}`"
+            }
+        end
 
         divider = {
           type: "divider"
@@ -89,6 +122,7 @@ module Fastlane
         post_message[:blocks].push(header)
         post_message[:blocks].push(sub_title)
         post_message[:blocks].push(content)
+        post_message[:blocks].push(default_content)
         post_message[:blocks].push(divider)
         post_message[:blocks].push(footer)
 
@@ -141,6 +175,13 @@ module Fastlane
                                        description: 'Add additional information to this post. payload must be a hash containing any key with any value',
                                        default_value: {},
                                        type: Hash),
+          FastlaneCore::ConfigItem.new(key: :default_payloads,
+                                       # The name of the environment variable
+                                       env_name: 'FL_SLACK_MESSAGE_DEFAULT_PAYLOADS',
+                                       # a short description of this parameter
+                                       description: 'Specifies default payloads to include. Pass an empty array to suppress all the default payloads',
+                                       default_value: ['git_branch', 'git_author'],
+                                       type: Array),
           FastlaneCore::ConfigItem.new(key: :footer,
                                        # The name of the environment variable
                                        env_name: 'FL_SLACK_MESSAGE_FOOTER',

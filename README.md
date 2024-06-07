@@ -22,8 +22,8 @@ lane :post_to_slack do
     payload: {
       "버전" => "0.1.10",
       "패키지명" => "com.nighttwo1.slackmsg",
-      "Release Date" => "2024-06-05"
     },
+    default_payloads: [:git_branch, :git_author, :release_date],
     footer: "테스트 후 피드백은 언제든지 환영합니다. 앱 사용 중 문제가 발생하거나 개선 사항이 있다면 메시지를 남겨주시면 감사하겠습니다.",
   )
 end
@@ -88,11 +88,12 @@ end
 
 # Parameters
 
-| Key           | Description                                                                                                              | Environment Variable           | Default         | Type   | Optional |
-| ------------- | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------ | --------------- | ------ | -------- |
-| `title`       | The title displayed on the Slack message.                                                                                | `FL_SLACK_MESSAGE_TITLE`       | `새로운 메시지` | String | No       |
-| `sub_title`   | The subtitle displayed on the Slack message.                                                                             | `FL_SLACK_MESSAGE_SUB_TITLE`   |                 | String | Yes      |
-| `webhook_url` | The Incoming WebHook URL for your Slack group.                                                                           | `FL_SLACK_MESSAGE_WEBHOOK_URL` |                 | String | No       |
-| `payload`     | A hash containing additional information to be displayed in the message.                                                 | `FL_SLACK_MESSAGE_PAYLOAD`     | `{}`            | Hash   | No       |
-| `footer`      | Additional message displayed at the bottom of the Slack message.                                                         | `FL_SLACK_MESSAGE_FOOTER`      |                 | String | Yes      |
-| `custom_body` | A complete custom body for the Slack message in JSON format. If this is provided, it will override the other parameters. | `FL_SLACK_MESSAGE_CUSTOM_BODY` |                 | String | Yes      |
+| Key                | Description                                                                                                              | Environment Variable                | Default                        | Type   | Optional |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------------ | ----------------------------------- | ------------------------------ | ------ | -------- |
+| `title`            | The title displayed on the Slack message.                                                                                | `FL_SLACK_MESSAGE_TITLE`            | `새로운 메시지`                | String | No       |
+| `sub_title`        | The subtitle displayed on the Slack message.                                                                             | `FL_SLACK_MESSAGE_SUB_TITLE`        |                                | String | Yes      |
+| `webhook_url`      | The Incoming WebHook URL for your Slack group.                                                                           | `FL_SLACK_MESSAGE_WEBHOOK_URL`      |                                | String | No       |
+| `payload`          | A hash containing additional information to be displayed in the message.                                                 | `FL_SLACK_MESSAGE_PAYLOAD`          | `{}`                           | Hash   | No       |
+| `default_payloads` | An array containing default information to be displayed in the message.                                                  | `FL_SLACK_MESSAGE_DEFAULT_PAYLOADS` | `['git_branch', 'git_author']` | Array  | No       |
+| `footer`           | Additional message displayed at the bottom of the Slack message.                                                         | `FL_SLACK_MESSAGE_FOOTER`           |                                | String | Yes      |
+| `custom_body`      | A complete custom body for the Slack message in JSON format. If this is provided, it will override the other parameters. | `FL_SLACK_MESSAGE_CUSTOM_BODY`      |                                | String | Yes      |

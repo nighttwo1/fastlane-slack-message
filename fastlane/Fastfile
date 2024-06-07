@@ -29,8 +29,8 @@ platform :android do
       payload: {
         "버전" => "0.1.10",
         "패키지명" => "com.nighttwo1.slackmsg",
-        "Release Date" => "2024-06-05"
       },
+      default_payloads: [:git_branch, :git_author, :release_date],
       footer: "테스트 후 피드백은 언제든지 환영합니다. 앱 사용 중 문제가 발생하거나 개선 사항이 있다면 메시지를 남겨주시면 감사하겠습니다.",
     )
   end
