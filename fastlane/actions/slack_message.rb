@@ -85,13 +85,14 @@ module Fastlane
         end
 
         # git_author
-        if Actions.git_author_email && default_payloads[:git_author]
+        if default_payloads[:git_author]
           if FastlaneCore::Env.truthy?('FASTLANE_SLACK_HIDE_AUTHOR_ON_SUCCESS') && options[:success]
           # We only show the git author if the build failed
           else
+            s = Actions.last_git_commit_formatted_with('%an(%ae)')
             default_content[:fields] << {
               type: "mrkdwn",
-              text: "*Git Author:* `#{Actions.git_author_email}`"
+              text: "*Git Author:* `#{s}`"
             }
           end
         end
