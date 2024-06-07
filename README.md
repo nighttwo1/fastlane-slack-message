@@ -5,7 +5,7 @@ Action for sending message with incoming webhook app in slack. Supports both sim
 # Example Output
 
 This action will generate and send a message to Slack that looks like this:
-<img width="812" alt="스크린샷 2024-06-06 오전 12 43 04" src="https://github.com/nighttwo1/fastlane-slack-message/assets/43779571/52ca492f-8748-4cb8-a9bd-5b437c54d3b8">
+<img width="697" alt="스크린샷 2024-06-07 오후 8 02 05" src="https://github.com/nighttwo1/fastlane-slack-message/assets/43779571/dad071b8-c458-42df-913e-cba8dfde3d4f">
 
 # Usage
 
